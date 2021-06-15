@@ -1,0 +1,13 @@
+.wrapper {
+  max-height: 100vh;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
