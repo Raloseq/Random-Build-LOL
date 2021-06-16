@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./SummonerSpellList.module.css";
+import { sample, shuffleArray } from "./ArrFunctions";
 const SummonerSpellList = (props) => {
   const [summonerSpell, setSummonerSpell] = useState([]);
   const urlSummonerSpels =
@@ -15,15 +16,6 @@ const SummonerSpellList = (props) => {
     };
     getSummonerSpells();
   }, []);
-  const sample = (arr) => arr[Math.floor(Math.random() * arr.length)];
-
-  const shuffleArray = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  };
 
   const smite = summonerSpell.filter((item) => item.name === "Smite");
   const spells = summonerSpell.filter(
