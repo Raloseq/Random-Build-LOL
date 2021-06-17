@@ -5,13 +5,6 @@ const FilterCheckbox = (props) => {
   const [jungle, setJungle] = useState(false);
   const [support, setSupport] = useState(false);
 
-  const filterJungle = () => {
-    setJungle(!jungle);
-  };
-  const filterSupport = () => {
-    setSupport(!support);
-  };
-
   return (
     <Fragment>
       <ContainerColumn>
@@ -25,7 +18,7 @@ const FilterCheckbox = (props) => {
           onChange={(e) => {
             props.onFilteredJungle(e.target.checked);
           }}
-          onClick={filterJungle}
+          onClick={() => setJungle((prev) => !prev)}
           className={styles.checkbox}
         />
       </ContainerColumn>
@@ -40,7 +33,7 @@ const FilterCheckbox = (props) => {
           onChange={(e) => {
             props.onFilteredSupport(e.target.checked);
           }}
-          onClick={filterSupport}
+          onClick={() => setSupport((prev) => !prev)}
           className={styles.checkbox}
         />
       </ContainerColumn>

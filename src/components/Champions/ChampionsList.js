@@ -1,5 +1,6 @@
 import Container from "../UI/Container";
 import Champion from "./Champion";
+
 const ChampionsList = ({ champions, filterName, filterTag }) => {
   return (
     <Container>
