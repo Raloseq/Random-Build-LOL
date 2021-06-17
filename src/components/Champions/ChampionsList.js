@@ -1,28 +1,26 @@
 import Container from "../UI/Container";
 import Champion from "./Champion";
-const ChampionsList = (props) => {
+const ChampionsList = ({ champions, filterName, filterTag }) => {
   return (
     <Container>
-      {props.champions
+      {champions
         .filter((champion) => {
-          if (props.filterName === "") {
+          if (filterName === "") {
             return champion;
           } else if (
-            champion.name.toLowerCase().includes(props.filterName.toLowerCase())
+            champion.name.toLowerCase().includes(filterName.toLowerCase())
           ) {
             return champion;
           }
         })
         .filter((champion) => {
-          if (props.filterTag === "") {
+          if (filterTag === "") {
             return champion;
           } else if (
-            champion.tag[0]
-              .toLowerCase()
-              .includes(props.filterTag.toLowerCase())
+            champion.tag[0].toLowerCase().includes(filterTag.toLowerCase())
           ) {
             return champion;
-          } else if (props.filterTag === "All") {
+          } else if (filterTag === "All") {
             return champion;
           }
         })

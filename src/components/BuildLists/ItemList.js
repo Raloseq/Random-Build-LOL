@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import styles from "./ItemList.module.css";
 import { sample, shuffleArray } from "./ArrFunctions";
-const ItemList = (props) => {
+const ItemList = ({ filteredJungle, filteredSupport }) => {
   const [items, setItems] = useState([]);
   const urlItems =
     "https://ddragon.leagueoflegends.com/cdn/11.12.1/data/en_US/item.json";
@@ -80,11 +80,11 @@ const ItemList = (props) => {
       randomItems.push(sample(boots));
     }
 
-    if (props.filteredSupport && supportItems.length > 0) {
+    if (filteredSupport && supportItems.length > 0) {
       randomItems.push(sample(supportItems));
     }
 
-    if (props.filteredJungle && jungleItems.length > 0) {
+    if (filteredJungle && jungleItems.length > 0) {
       randomItems.push(sample(jungleItems));
     }
     return randomItems;
@@ -95,7 +95,7 @@ const ItemList = (props) => {
     const finalItems = [];
     finalItems.push(...random(), ...normalItems, ...shuffledNormalItems);
     let finalItemsSliced = [];
-    if (props.filteredJungle) {
+    if (filteredJungle) {
       finalItemsSliced = finalItems.slice(0, 7);
     } else {
       finalItemsSliced = finalItems.slice(0, 6);

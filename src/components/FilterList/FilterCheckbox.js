@@ -5,10 +5,10 @@ const FilterCheckbox = (props) => {
   const [jungle, setJungle] = useState(false);
   const [support, setSupport] = useState(false);
 
-  const filterJungle = (e) => {
+  const filterJungle = () => {
     setJungle(!jungle);
   };
-  const filterSupport = (e) => {
+  const filterSupport = () => {
     setSupport(!support);
   };
 

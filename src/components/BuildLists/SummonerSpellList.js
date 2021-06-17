@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./SummonerSpellList.module.css";
 import { sample, shuffleArray } from "./ArrFunctions";
-const SummonerSpellList = (props) => {
+const SummonerSpellList = ({ filteredJungle }) => {
   const [summonerSpell, setSummonerSpell] = useState([]);
   const urlSummonerSpels =
     "https://ddragon.leagueoflegends.com/cdn/11.12.1/data/en_US/summoner.json";
@@ -23,7 +23,7 @@ const SummonerSpellList = (props) => {
   );
   const combineSpells = () => {
     const spellsFinal = [];
-    if (!props.filteredJungle) {
+    if (!filteredJungle) {
       spellsFinal.push(...shuffleArray(spells));
     } else {
       if (spells.length > 0) {
