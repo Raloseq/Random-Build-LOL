@@ -6,3 +6,9 @@
   min-height: 100vh;
   background-color: rgb(44, 173, 55);
 }
+
+.App h1 {
+  color: white;
+  margin: 0;
+  padding-top: 50px;
+}
