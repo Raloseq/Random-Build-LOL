@@ -1,12 +1,13 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import styles from "./FilterCheckbox.module.css";
 import ContainerColumn from "../UI/ContainerColumn";
+import Container from "../UI/Container";
 const FilterCheckbox = (props) => {
   const [jungle, setJungle] = useState(false);
   const [support, setSupport] = useState(false);
 
   return (
-    <Fragment>
+    <Container>
       <ContainerColumn>
         <label htmlFor="smite" className={styles.label}>
           Smite
@@ -37,7 +38,7 @@ const FilterCheckbox = (props) => {
           className={styles.checkbox}
         />
       </ContainerColumn>
-    </Fragment>
+    </Container>
   );
 };
 

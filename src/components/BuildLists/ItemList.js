@@ -1,44 +1,38 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment } from "react";
 import styles from "./ItemList.module.css";
 import { sample, shuffleArray } from "./ArrFunctions";
+import useHttp from "../../hooks/use-https";
 const ItemList = ({ filteredJungle, filteredSupport }) => {
-  const [items, setItems] = useState([]);
   const urlItems =
     "https://ddragon.leagueoflegends.com/cdn/11.12.1/data/en_US/item.json";
-  useEffect(() => {
-    const getItems = async () => {
-      const response = await fetch(urlItems);
-      const data = await response.json();
-      const items = Object.values(data.data).map(
-        ({
-          name,
-          plaintext,
-          tags,
-          image,
-          gold,
-          requiredAlly,
-          depth,
-          into,
-          description,
-          inStore,
-        }) => ({
-          name,
-          plaintext,
-          tags: tags,
-          image: image.full,
-          gold: gold.total,
-          requiredAlly,
-          depth,
-          into,
-          description,
-          inStore,
-        })
-      );
-      setItems(items);
-    };
-    getItems();
-  }, []);
 
+  const objectValues = () => {
+    return ({
+      name,
+      plaintext,
+      tags,
+      image,
+      gold,
+      requiredAlly,
+      depth,
+      into,
+      description,
+      inStore,
+    }) => ({
+      name,
+      plaintext,
+      tags: tags,
+      image: image.full,
+      gold: gold.total,
+      requiredAlly,
+      depth,
+      into,
+      description,
+      inStore,
+    });
+  };
+
+  const items = useHttp(urlItems,objectValues());
   const mythicItems = items.filter((item) => {
     return (
       item.gold > 2000 &&

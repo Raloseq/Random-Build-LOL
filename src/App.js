@@ -3,10 +3,10 @@ import { Route, Switch } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import BuildGenerator from "./pages/BuildGenerator";
 import BraumGif from "./images/braum-error.gif";
+import useHttp from "./hooks/use-https";
 import "./App.css";
 
 function App() {
-  const [champions, setChampions] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -15,27 +15,20 @@ function App() {
       setLoading(false);
     }, 1500);
   }, []);
+  const URL =
+  "https://ddragon.leagueoflegends.com/cdn/11.11.1/data/en_US/champion.json";
 
-  useEffect(() => {
-    const URL =
-      "https://ddragon.leagueoflegends.com/cdn/11.11.1/data/en_US/champion.json";
+  const objectValues = () => {
+    return ({ id, name, image, tags }) => ({
+      id,
+      name,
+      image: image.full,
+      tags,
+    })
+  }
+  
+  const champions = useHttp(URL,objectValues());
 
-    const getChampions = async () => {
-      const response = await fetch(URL);
-      const data = await response.json();
-
-      const champions = Object.values(data.data).map(
-        ({ id, name, image, tags }) => ({
-          id,
-          name,
-          image: image.full,
-          tag: tags,
-        })
-      );
-      setChampions(champions);
-    };
-    getChampions();
-  }, [setChampions]);
   return (
     <div className="App">
       {loading ? (

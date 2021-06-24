@@ -1,21 +1,14 @@
-import { useEffect, useState } from "react";
 import styles from "./SummonerSpellList.module.css";
 import { sample, shuffleArray } from "./ArrFunctions";
+import useHttp from "../../hooks/use-https";
 const SummonerSpellList = ({ filteredJungle }) => {
-  const [summonerSpell, setSummonerSpell] = useState([]);
   const urlSummonerSpels =
     "https://ddragon.leagueoflegends.com/cdn/11.12.1/data/en_US/summoner.json";
-  useEffect(() => {
-    const getSummonerSpells = async () => {
-      const response = await fetch(urlSummonerSpels);
-      const data = await response.json();
-      const summonerSpells = Object.values(data.data).map(
-        ({ id, name, tooltip, modes }) => ({ id, name, tooltip, modes })
-      );
-      setSummonerSpell(summonerSpells);
-    };
-    getSummonerSpells();
-  }, []);
+  const objectValues = () => {
+    return ({ id, name, tooltip, modes }) => ({ id, name, tooltip, modes });
+  };
+
+  const summonerSpell = useHttp(urlSummonerSpels,objectValues());
 
   const smite = summonerSpell.filter((item) => item.name === "Smite");
   const spells = summonerSpell.filter(
